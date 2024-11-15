@@ -10,26 +10,25 @@ class APIError(Exception):
     """An error for issues with contacting an API."""
 
 
+def get_storage_ids(namespace: str):
+    """Returns the all the ids for a given username"""
+    response = requests.get(f'{BASE_URL}//storage/{namespace}')
+    return sorted(response.json()["ids"])
+
 
 def display_storage_ids(namespace: str, number: str = None) -> None:
     """Prints a list of storage IDs in ascending order based on a namespace given."""
-    ids = sorted(get_API_json(namespace)["ids"])
-    print(ids)
-    message = ""
-    if number == None:
-        for id in ids:
-            message += f"{id}\n"
-    elif number > len(ids):
-         for id in ids:
-            message += f"{id}\n"
+    ids = get_storage_ids(namespace)
+    if number is None or number > len(ids):
+        for num in ids:
+            print(num)
     else:
-        for i in range(number):
-            message += f"{ids[i]}\n"
-       
-    print(message[:-1])
+        for num in ids[:number]:
+            print(num)
 
 
 def display_messages(username: str, id: int) -> None:
+    """Displays all messages for a given ID"""
     response = requests.get(f'{BASE_URL}/storage/{username}/{id}')
     print(f'{BASE_URL}/storage/:{username}/:{id}')
     try:
@@ -44,7 +43,8 @@ def display_messages(username: str, id: int) -> None:
 
 
 def send_message(username:str, id: int, message: str) -> None:
-    if message != None:
+    """Sends a message to a given ID"""
+    if message is not None:
         response = requests.post(f'{BASE_URL}/storage/{username}/{id}', json={"message": message})
         print(response.status_code)
         if response.status_code == 200:
@@ -54,6 +54,7 @@ def send_message(username:str, id: int, message: str) -> None:
 
 
 def delete_messages(username:str, id: int, delete: bool) -> None:
+    """Deletes all messages from a a given ID"""
     if delete:
         response = requests.delete(f'{BASE_URL}/storage/{username}/{id}')
         print(response.status_code)
@@ -66,22 +67,24 @@ def delete_messages(username:str, id: int, delete: bool) -> None:
 def get_arg_parser() -> ArgumentParser:
     """Returns an argument parser object."""
 
-    parser = ArgumentParser(prog="Storetoise CLI", description="A command-line interface to the Storetoise API.")
-    parser.add_argument("-u", "--username", help="The username for the namespace to use", required=True)
-    parser.add_argument("-n", "--number", help="The number of results to return")
-    parser.add_argument("-s", "--storage", help="Displays messages from a given id")
-    parser.add_argument("-m", "--message", help="sends messages from a given id")
-    parser.add_argument("-d", "--delete", help="deletes all messages from a given id", action="store_true")
+    parser = ArgumentParser(prog="Storetoise CLI",
+                            description="A command-line interface to the Storetoise API.")
+    parser.add_argument("-u", "--username",
+                        help="The username for the namespace to use", required=True)
+    parser.add_argument("-n", "--number",
+                        help="The number of results to return")
+    parser.add_argument("-s", "--storage",
+                        help="Displays messages from a given id")
+    parser.add_argument("-m", "--message",
+                        help="sends messages from a given id")
+    parser.add_argument("-d", "--delete",
+                        help="deletes all messages from a given id", action="store_true")
     return parser
 
 
-def get_API_json(username: str) -> dict:
-    response = requests.get(f'{BASE_URL}//storage/{username}')
-    return response.json()
-
-
 def verify_number(number: str):
-    if number != None:
+    """Verifies if number is a valid integer"""
+    if number is not None:
         if not number.isnumeric():
             print("Number must be an integer between 0 and 1000.")
             number = None
@@ -94,7 +97,8 @@ def verify_number(number: str):
 
 
 def verify_storage(number: str):
-    if number != None:
+    """Verifies storage ID"""
+    if number is not None:
         if not number.isnumeric():
             print("Storage ID must be a three-digit integer.")
             number = None
@@ -107,7 +111,8 @@ def verify_storage(number: str):
 
 
 def verify_message(message: str):
-    if message != None:
+    """Verifies message is valid"""
+    if message is not None:
         if len(message) > 140:
             print("Message must be 140 characters or fewer.")
             return None
@@ -120,23 +125,12 @@ def verify_message(message: str):
     return message
 
 
-
 if __name__ == "__main__":
     args = get_arg_parser().parse_args()
-    username = args.username
-    number = verify_number(args.number)
-    id = verify_storage(args.storage)
-    message = verify_message(args.message)
-    delete = args.delete
-
-    
-
     try:
-        delete_messages(username, id, delete)
-        send_message(username, id, message)
-        display_storage_ids(namespace=username, number=number)
-        display_messages(username, id)
-        
-
+        delete_messages(args.username, verify_storage(args.storage), args.delete)
+        send_message(args.username, verify_storage(args.storage), verify_message(args.message))
+        display_storage_ids(args.username, verify_number(args.number))
+        display_messages(args.username, verify_storage(args.storage))
     except (ValueError, APIError) as e:
         print(str(e))
