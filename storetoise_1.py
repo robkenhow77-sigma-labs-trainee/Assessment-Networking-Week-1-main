@@ -13,7 +13,19 @@ class APIError(Exception):
 
 def display_storage_ids(namespace: str, number: str = None) -> None:
     """Prints a list of storage IDs in ascending order based on a namespace given."""
-    ...
+    ids = sorted(get_API_json(namespace)["ids"])
+    message = ""
+    if number == None:
+        for id in ids:
+            message += f"{id}\n"
+    elif number > len(ids):
+         for id in ids:
+            message += f"{id}\n"
+    else:
+        for i in range(number):
+            message += f"{ids[i]}\n"
+       
+    print(message[:-1])
 
 
 
@@ -34,21 +46,31 @@ def get_arg_parser() -> ArgumentParser:
 
     return parser
 
-# TODO Write functions for your solution out here
+
+def get_API_json(username: str) -> dict:
+    response = requests.get(f'{BASE_URL}//storage/:{username}')
+    return response.json()
+
+
+def verify_number(number: str):
+    if number != None:
+        if not number.isnumeric():
+            print("Number must be an integer between 0 and 1000.")
+            number = None
+        elif float(number) < 0 or float(number) > 1000:
+            print("Number must be an integer between 0 and 1000.")
+            number = None
+        else:
+            number = int(number)
+    return number
+
 
 
 if __name__ == "__main__":
-
     args = get_arg_parser().parse_args()
-    # print("Arguments: ", args)
-
+    username = args.username
+    number = verify_number(args.number)
     try:
-
-        # TODO Call functions for your solution inside here
-
-        # display_storage_ids(namespace=args.username)
-
-
+        display_storage_ids(namespace=username, number=number)
     except (ValueError, APIError) as e:
-
         print(str(e))
