@@ -14,6 +14,7 @@ class APIError(Exception):
 def display_storage_ids(namespace: str, number: str = None) -> None:
     """Prints a list of storage IDs in ascending order based on a namespace given."""
     ids = sorted(get_API_json(namespace)["ids"])
+    print(ids)
     message = ""
     if number == None:
         for id in ids:
@@ -42,6 +43,16 @@ def display_messages(username: str, id: int) -> None:
         print("Cannot get messages for a non-existent storage ID.")
 
 
+def send_message(username:str, id: int, message: str) -> None:
+    if message != None:
+        response = requests.post(f'{BASE_URL}/storage/{username}/{id}', json={"message": message})
+        print(response.status_code)
+        if response.status_code == 200:
+            print(f"Message added to Storage ID {id} successfully.")
+        else:
+            print("Cannot add more than 10 messages to a storage ID.")
+
+
 def get_arg_parser() -> ArgumentParser:
     """Returns an argument parser object."""
 
@@ -50,12 +61,13 @@ def get_arg_parser() -> ArgumentParser:
     parser.add_argument("-u", "--username", help="The username for the namespace to use", required=True)
     parser.add_argument("-n", "--number", help="The number of results to return")
     parser.add_argument("-s", "--storage", help="Displays messages from a given id")
+    parser.add_argument("-m", "--message", help="sends messages from a given id")
 
     return parser
 
 
 def get_API_json(username: str) -> dict:
-    response = requests.get(f'{BASE_URL}//storage/:{username}')
+    response = requests.get(f'{BASE_URL}//storage/{username}')
     return response.json()
 
 
@@ -84,14 +96,34 @@ def verify_storage(number: str):
             number = int(number)
     return number
 
+
+def verify_message(message: str):
+    if message != None:
+        if len(message) > 140:
+            print("Message must be 140 characters or fewer.")
+            return None
+        if not message.replace(" ", "").isalpha():
+            print("Message must consist only of lowercase letters and spaces.")
+            return None
+        if not message.islower():
+            print("Message must consist only of lowercase letters and spaces.")
+            return None
+    return message
+
+
+
 if __name__ == "__main__":
     args = get_arg_parser().parse_args()
-    print(args)
     username = args.username
     number = verify_number(args.number)
     id = verify_storage(args.storage)
+    message = verify_message(args.message)
     try:
+        send_message(username, id, message)
         display_storage_ids(namespace=username, number=number)
         display_messages(username, id)
     except (ValueError, APIError) as e:
         print(str(e))
+
+
+# "YYYYY", ",-", "./1'23", "aBcDeF", "readad."
