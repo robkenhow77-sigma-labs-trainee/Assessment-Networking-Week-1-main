@@ -6,9 +6,9 @@ collected 56 items
 test_challenge_1.py ..............                                       [ 25%]
 test_challenge_2.py .............                                        [ 48%]
 test_challenge_3.py ..............                                       [ 73%]
-test_challenge_4.py FFFFFFFFFFFFFFF                                      [100%]
+test_challenge_4.py ...............                                      [100%]
 
-======================== 15 failed, 41 passed in 28.00s ========================
+============================= 56 passed in 48.09s ==============================
 ************* Module storetoise_1
 storetoise_1.py:22:0: W0311: Bad indentation. Found 9 spaces, expected 8 (bad-indentation)
 storetoise_1.py:27:0: C0303: Trailing whitespace (trailing-whitespace)
@@ -86,6 +86,162 @@ storetoise_3.py:100:0: C0116: Missing function or method docstring (missing-func
 storetoise_3.py:100:19: W0621: Redefining name 'message' from outer scope (line 120) (redefined-outer-name)
 storetoise_3.py:101:7: C0121: Comparison 'message != None' should be 'message is not None' (singleton-comparison)
 ************* Module storetoise_4
+storetoise_4.py:23:0: W0311: Bad indentation. Found 9 spaces, expected 8 (bad-indentation)
+storetoise_4.py:28:0: C0303: Trailing whitespace (trailing-whitespace)
+storetoise_4.py:69:0: C0301: Line too long (113/100) (line-too-long)
+storetoise_4.py:70:0: C0301: Line too long (104/100) (line-too-long)
+storetoise_4.py:74:0: C0301: Line too long (107/100) (line-too-long)
+storetoise_4.py:132:0: C0303: Trailing whitespace (trailing-whitespace)
+storetoise_4.py:139:0: C0303: Trailing whitespace (trailing-whitespace)
+storetoise_4.py:128:4: W0622: Redefining built-in 'id' (redefined-builtin)
+storetoise_4.py:14:40: W0621: Redefining name 'number' from outer scope (line 127) (redefined-outer-name)
+storetoise_4.py:18:4: W0621: Redefining name 'message' from outer scope (line 129) (redefined-outer-name)
+storetoise_4.py:20:12: W0621: Redefining name 'id' from outer scope (line 128) (redefined-outer-name)
+storetoise_4.py:19:7: C0121: Comparison 'number == None' should be 'number is None' (singleton-comparison)
+storetoise_4.py:32:0: C0116: Missing function or method docstring (missing-function-docstring)
+storetoise_4.py:32:21: W0621: Redefining name 'username' from outer scope (line 126) (redefined-outer-name)
+storetoise_4.py:32:36: W0621: Redefining name 'id' from outer scope (line 128) (redefined-outer-name)
+storetoise_4.py:33:15: W3101: Missing timeout argument for method 'requests.get' can cause your program to hang indefinitely (missing-timeout)
+storetoise_4.py:42:4: W0702: No exception type(s) specified (bare-except)
+storetoise_4.py:40:12: C0200: Consider using enumerate instead of iterating with range and len (consider-using-enumerate)
+storetoise_4.py:46:0: C0116: Missing function or method docstring (missing-function-docstring)
+storetoise_4.py:46:17: W0621: Redefining name 'username' from outer scope (line 126) (redefined-outer-name)
+storetoise_4.py:46:31: W0621: Redefining name 'id' from outer scope (line 128) (redefined-outer-name)
+storetoise_4.py:46:40: W0621: Redefining name 'message' from outer scope (line 129) (redefined-outer-name)
+storetoise_4.py:47:7: C0121: Comparison 'message != None' should be 'message is not None' (singleton-comparison)
+storetoise_4.py:48:19: W3101: Missing timeout argument for method 'requests.post' can cause your program to hang indefinitely (missing-timeout)
+storetoise_4.py:56:0: C0116: Missing function or method docstring (missing-function-docstring)
+storetoise_4.py:56:20: W0621: Redefining name 'username' from outer scope (line 126) (redefined-outer-name)
+storetoise_4.py:56:34: W0621: Redefining name 'id' from outer scope (line 128) (redefined-outer-name)
+storetoise_4.py:56:43: W0621: Redefining name 'delete' from outer scope (line 130) (redefined-outer-name)
+storetoise_4.py:58:19: W3101: Missing timeout argument for method 'requests.delete' can cause your program to hang indefinitely (missing-timeout)
+storetoise_4.py:78:0: C0116: Missing function or method docstring (missing-function-docstring)
+storetoise_4.py:78:0: C0103: Function name "get_API_json" doesn't conform to snake_case naming style (invalid-name)
+storetoise_4.py:78:17: W0621: Redefining name 'username' from outer scope (line 126) (redefined-outer-name)
+storetoise_4.py:79:15: W3101: Missing timeout argument for method 'requests.get' can cause your program to hang indefinitely (missing-timeout)
+storetoise_4.py:83:0: C0116: Missing function or method docstring (missing-function-docstring)
+storetoise_4.py:83:18: W0621: Redefining name 'number' from outer scope (line 127) (redefined-outer-name)
+storetoise_4.py:84:7: C0121: Comparison 'number != None' should be 'number is not None' (singleton-comparison)
+storetoise_4.py:96:0: C0116: Missing function or method docstring (missing-function-docstring)
+storetoise_4.py:96:19: W0621: Redefining name 'number' from outer scope (line 127) (redefined-outer-name)
+storetoise_4.py:97:7: C0121: Comparison 'number != None' should be 'number is not None' (singleton-comparison)
+storetoise_4.py:109:0: C0116: Missing function or method docstring (missing-function-docstring)
+storetoise_4.py:109:19: W0621: Redefining name 'message' from outer scope (line 129) (redefined-outer-name)
+storetoise_4.py:110:7: C0121: Comparison 'message != None' should be 'message is not None' (singleton-comparison)
+storetoise_4.py:1:0: R0801: Similar lines in 2 files
+==storetoise_3:[65:120]
+==storetoise_4:[74:129]
+    return parser
+
+
+def get_API_json(username: str) -> dict:
+    response = requests.get(f'{BASE_URL}//storage/{username}')
+    return response.json()
+
+
+def verify_number(number: str):
+    if number != None:
+        if not number.isnumeric():
+            print("Number must be an integer between 0 and 1000.")
+            number = None
+        elif float(number) < 0 or float(number) > 1000:
+            print("Number must be an integer between 0 and 1000.")
+            number = None
+        else:
+            number = int(number)
+    return number
+
+
+def verify_storage(number: str):
+    if number != None:
+        if not number.isnumeric():
+            print("Storage ID must be a three-digit integer.")
+            number = None
+        elif len(number) != 3:
+            print("Storage ID must be a three-digit integer.")
+            number = None
+        else:
+            number = int(number)
+    return number
+
+
+def verify_message(message: str):
+    if message != None:
+        if len(message) > 140:
+            print("Message must be 140 characters or fewer.")
+            return None
+        if not message.replace(" ", "").isalpha():
+            print("Message must consist only of lowercase letters and spaces.")
+            return None
+        if not message.islower():
+            print("Message must consist only of lowercase letters and spaces.")
+            return None
+    return message
+
+
+
+if __name__ == "__main__":
+    args = get_arg_parser().parse_args()
+    username = args.username
+    number = verify_number(args.number)
+    id = verify_storage(args.storage)
+    message = verify_message(args.message) (duplicate-code)
+storetoise_4.py:1:0: R0801: Similar lines in 2 files
+==storetoise_3:[5:58]
+==storetoise_4:[5:56]
+BASE_URL = "http://storetoise-lb-992940215.eu-west-2.elb.amazonaws.com"
+
+
+class APIError(Exception):
+    """An error for issues with contacting an API."""
+
+
+
+def display_storage_ids(namespace: str, number: str = None) -> None:
+    """Prints a list of storage IDs in ascending order based on a namespace given."""
+    ids = sorted(get_API_json(namespace)["ids"])
+    print(ids)
+    message = ""
+    if number == None:
+        for id in ids:
+            message += f"{id}\n"
+    elif number > len(ids):
+         for id in ids:
+            message += f"{id}\n"
+    else:
+        for i in range(number):
+            message += f"{ids[i]}\n"
+
+    print(message[:-1])
+
+
+def display_messages(username: str, id: int) -> None:
+    response = requests.get(f'{BASE_URL}/storage/{username}/{id}')
+    print(f'{BASE_URL}/storage/:{username}/:{id}')
+    try:
+        messages = response.json()["messages"]
+        if len(messages) == 0:
+            print(f'No messages found for storage ID {id}.')
+        else:
+            for i in range(len(messages)):
+                print(f"{i}) {messages[i]}")
+    except:
+        print("Cannot get messages for a non-existent storage ID.")
+
+
+def send_message(username:str, id: int, message: str) -> None:
+    if message != None:
+        response = requests.post(f'{BASE_URL}/storage/{username}/{id}', json={"message": message})
+        print(response.status_code)
+        if response.status_code == 200:
+            print(f"Message added to Storage ID {id} successfully.")
+        else:
+            print("Cannot add more than 10 messages to a storage ID.")
+
+
+def get_arg_parser() -> ArgumentParser:
+    """Returns an argument parser object."""
+ (duplicate-code)
 storetoise_4.py:1:0: R0801: Similar lines in 2 files
 ==storetoise_2:[16:47]
 ==storetoise_3:[17:46]
@@ -117,9 +273,7 @@ def display_messages(username: str, id: int) -> None:
         print("Cannot get messages for a non-existent storage ID.")
 
 
-def get_arg_parser() -> ArgumentParser:
-    """Returns an argument parser object."""
- (duplicate-code)
+def send_message(username:str, id: int, message: str) -> None: (duplicate-code)
 storetoise_4.py:1:0: R0801: Similar lines in 2 files
 ==storetoise_2:[58:86]
 ==storetoise_3:[70:100]
@@ -150,9 +304,7 @@ def verify_storage(number: str):
         else:
             number = int(number)
     return number
-
-
-def verify_message(message: str): (duplicate-code)
+ (duplicate-code)
 storetoise_4.py:1:0: R0801: Similar lines in 2 files
 ==storetoise_1:[5:34]
 ==storetoise_2:[5:31]
@@ -181,7 +333,10 @@ def display_storage_ids(namespace: str, number: str = None) -> None:
     print(message[:-1])
 
 
-def display_messages(username: str, id: int) -> None: (duplicate-code)
+
+def get_arg_parser() -> ArgumentParser:
+    """Returns an argument parser object."""
+ (duplicate-code)
 storetoise_4.py:1:0: R0801: Similar lines in 2 files
 ==storetoise_1:[46:68]
 ==storetoise_2:[53:75]
@@ -244,10 +399,7 @@ storetoise_4.py:1:0: R0801: Similar lines in 2 files
     print(message[:-1])
 
 
-
-def get_arg_parser() -> ArgumentParser:
-    """Returns an argument parser object."""
- (duplicate-code)
+def display_messages(username: str, id: int) -> None: (duplicate-code)
 storetoise_4.py:1:0: R0801: Similar lines in 2 files
 ==storetoise_1:[61:70]
 ==storetoise_2:[81:88]
@@ -256,11 +408,27 @@ storetoise_4.py:1:0: R0801: Similar lines in 2 files
             number = int(number)
     return number
 
-
-
 if __name__ == "__main__":
     args = get_arg_parser().parse_args() (duplicate-code)
+storetoise_4.py:1:0: R0801: Similar lines in 2 files
+==storetoise_3:[121:126]
+==storetoise_4:[135:142]
+        send_message(username, id, message)
+        display_storage_ids(namespace=username, number=number)
+        display_messages(username, id)
+    except (ValueError, APIError) as e:
+        print(str(e)) (duplicate-code)
+storetoise_4.py:1:0: R0801: Similar lines in 2 files
+==storetoise_3:[58:65]
+==storetoise_4:[68:73]
+    parser = ArgumentParser(prog="Storetoise CLI", description="A command-line interface to the Storetoise API.")
+
+    parser.add_argument("-u", "--username", help="The username for the namespace to use", required=True)
+    parser.add_argument("-n", "--number", help="The number of results to return")
+    parser.add_argument("-s", "--storage", help="Displays messages from a given id")
+    parser.add_argument("-m", "--message", help="sends messages from a given id")
+ (duplicate-code)
 
 ------------------------------------------------------------------
-Your code has been rated at 5.96/10 (previous run: 5.96/10, +0.00)
+Your code has been rated at 5.76/10 (previous run: 5.76/10, +0.00)
 
