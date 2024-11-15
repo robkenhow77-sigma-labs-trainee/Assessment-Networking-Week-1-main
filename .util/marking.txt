@@ -1,0 +1,13 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.6, pytest-8.3.3, pluggy-1.5.0
+rootdir: /home/runner/work/Assessment-Networking-Week-1/Assessment-Networking-Week-1
+collected 56 items
+
+test_challenge_1.py FFFFFFFFFFFFFF                                       [ 25%]
+test_challenge_2.py FFFFFFFFFFFFF                                        [ 48%]
+test_challenge_3.py FFFFFFFFFFFFFF                                       [ 73%]
+test_challenge_4.py FFFFFFFFFFFFFFF                                      [100%]
+
+============================== 56 failed in 1.06s ==============================
+************* Module storetoise_1
+storetoise_1.py:52:5: E0001: Parsing failed: 'expected an indented block after 'try' statement on line 45 (storetoise_1, line 52)' (syntax-error)
